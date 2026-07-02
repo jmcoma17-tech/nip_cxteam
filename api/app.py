@@ -1,7 +1,15 @@
 from flask import Flask, render_template, jsonify
 from dla import generate_dla
 
-app = Flask(__name__)
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+app = Flask(
+    __name__,
+    template_folder=str(BASE_DIR / "templates"),
+    static_folder=str(BASE_DIR / "static")
+)
 
 @app.route("/")
 def home():
