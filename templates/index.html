@@ -42,12 +42,9 @@
 <script>
 async function generate(){
 
-    const response = await fetch("/generate");
+    const image = document.getElementById("image");
 
-    const data = await response.json();
-
-    document.getElementById("image").src =
-        data.image + "?t=" + new Date().getTime();
+    image.src="/generate?t="+Date.now();
 
 }
 </script>
