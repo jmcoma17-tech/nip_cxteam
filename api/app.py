@@ -1,5 +1,4 @@
-from flask import Flask, render_template, send_file
-from pathlib import Path
+from flask import Flask, render_template, send_file, requestfrom pathlib import Path
 from io import BytesIO
 from dla import generate_dla
 
@@ -16,7 +15,15 @@ def home():
 
 @app.route("/generate")
 def generate():
-    image = generate_dla(100)
+
+    particles = request.args.get(
+        "particles",
+        default=100,
+        type=int
+    )
+
+    image = generate_dla(particles)
+
     return send_file(
         image,
         mimetype="image/png"
