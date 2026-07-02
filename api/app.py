@@ -18,5 +18,5 @@ def home():
 @app.route("/generate")
 def generate():
     return jsonify({
-        "image": "https://placehold.co/700x700/png?text=DLA+Working"
+        "image": "https://upload.wikimedia.org/wikipedia/commons/3/3f/Fronalpstock_big.jpg"
     })
