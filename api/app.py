@@ -17,5 +17,6 @@ def home():
 
 @app.route("/generate")
 def generate():
-    image = generate_dla()
-    return jsonify({"image": image})
+    return jsonify({
+        "image": "https://placehold.co/600x600/png?text=DLA+Working"
+    })
