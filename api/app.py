@@ -17,4 +17,5 @@ def home():
 @app.route("/generate")
 def generate():
     image = generate_dla(100)
+    image.seek(0)
     return send_file(image, mimetype="image/png")
