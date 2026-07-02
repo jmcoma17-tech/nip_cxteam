@@ -4,7 +4,7 @@ import random
 import math
 import os
 
-def generate_dla(num_particles=3600):
+def generate_dla(num_particles=100):
 
     GRID_SIZE = 601
     CENTER = GRID_SIZE // 2
