@@ -10,18 +10,11 @@ app = Flask(
     template_folder=str(BASE_DIR / "templates")
 )
 
-@app.route("/")
-def home():
-    return render_template("index.html")
-
 @app.route("/generate")
 def generate():
-
-    particles = request.args.get(
-        "particles",
-        default=100,
-        type=int
-    )
+    return jsonify({
+        "image": "https://upload.wikimedia.org/wikipedia/commons/3/3f/Fronalpstock_big.jpg"
+    })
 
     image = generate_dla(particles)
 
