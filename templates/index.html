@@ -8,63 +8,13 @@
 
 <style>
 
-<body>
+<style>
 
-<h1>DLA Physics Generator</h1>
+body{
 
-<div>
-
-<label><b>Number of Particles</b></label>
-
-<br><br>
-
-<input
-    type="number"
-    id="particles"
-    value="100"
-    min="10"
-    max="5000"
-    step="10"
->
-
-<br><br>
-
-<button onclick="generate()">
-Generate DLA
-</button>
-
-<p id="status"></p>
-
-<br>
-
-<img
-    id="image"
-    style="max-width:700px;width:100%;border:1px solid #ccc;"
->
-
-</div>
-
-<script>
-
-async function generate(){
-
-    const particles =
-        document.getElementById("particles").value;
-
-    document.getElementById("status").innerHTML =
-        "Generating...";
-
-    document.getElementById("image").src =
-        "/generate?particles=" +
-        particles +
-        "&t=" +
-        Date.now();
-
-    document.getElementById("status").innerHTML =
-        "";
+    font-family:Arial,sans-serif;
+    background:#eef2f7;
+    text-align:center;
+    margin:40px;
 
 }
-
-</script>
-
-</body>
