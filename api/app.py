@@ -1,4 +1,4 @@
-from flask import Flask, render_template, send_file, request
+from flask import Flask, render_template, send_file
 from pathlib import Path
 from io import BytesIO
 from dla import generate_dla
@@ -10,8 +10,14 @@ app = Flask(
     template_folder=str(BASE_DIR / "templates")
 )
 
+@app.route("/")
+def home():
+    return render_template("index.html")
+
 @app.route("/generate")
 def generate():
-    return jsonify({
-        "image": "https://upload.wikimedia.org/wikipedia/commons/3/3f/Fronalpstock_big.jpg"
-    })
+    image = generate_dla(100)
+    return send_file(
+        image,
+        mimetype="image/png"
+    )
