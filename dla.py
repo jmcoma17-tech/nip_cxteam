@@ -9,7 +9,7 @@ import math
 from io import BytesIO
 
 
-def generate_dla(num_particles=1000):
+def generate_dla(num_particles=3600):
 
     GRID_SIZE = 601
     CENTER = GRID_SIZE // 2
