@@ -1,17 +1,53 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DLA Physics App</title>
 
-<meta charset="UTF-8">
+    <style>
+        body{
+            font-family:Arial,sans-serif;
+            text-align:center;
+            background:#f4f4f4;
+            margin:40px;
+        }
 
-<title>DLA Physics Generator</title>
+        button{
+            padding:12px 25px;
+            font-size:18px;
+            cursor:pointer;
+            margin:20px;
+        }
+
+        img{
+            width:700px;
+            max-width:95%;
+            border:1px solid #ccc;
+            background:white;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>Diffusion Limited Aggregation</h1>
+
+<button onclick="generate()">Generate DLA</button>
+
+<br>
+
+<img id="image" src="" alt="Generated image will appear here">
 
 <script>
 async function generate(){
 
     const image = document.getElementById("image");
 
-    image.src="/generate?t="+Date.now();
+    image.src = "/generate?t=" + Date.now();
 
 }
 </script>
+
+</body>
+</html>
