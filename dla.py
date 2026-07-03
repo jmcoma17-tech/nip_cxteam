@@ -7,10 +7,6 @@ import random
 import math
 from io import BytesIO         # <-- Added
 
-# ------------------------------------------
-# Wrap everything inside a function
-# ------------------------------------------
-
 def generate_dla(NUM_PARTICLES=3600):
 
     GRID_SIZE = 601
@@ -146,10 +142,6 @@ def generate_dla(NUM_PARTICLES=3600):
     )
 
     plt.axis("off")
-
-    # ------------------------------------------
-    # Replace plt.show() with this
-    # ------------------------------------------
 
     buffer = BytesIO()
 
