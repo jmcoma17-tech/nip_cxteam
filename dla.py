@@ -1,15 +1,16 @@
 import numpy as np
 import matplotlib
-matplotlib.use("Agg")          # <-- Added for Vercel
+matplotlib.use("Agg")
 
 import matplotlib.pyplot as plt
 import random
 import math
-from io import BytesIO         # <-- Added
+from io import BytesIO
 
-def generate_dla(NUM_PARTICLES=3600):
 
-    GRID_SIZE = 601
+def generate_dla(grid_size=601, num_particles=3600):
+
+    GRID_SIZE = int(grid_size)
     CENTER = GRID_SIZE // 2
 
     grid = np.zeros((GRID_SIZE, GRID_SIZE), dtype=np.uint8)
@@ -46,38 +47,38 @@ def generate_dla(NUM_PARTICLES=3600):
         gx = x + CENTER
         gy = y + CENTER
 
-        if gx < 2 or gx >= GRID_SIZE-2:
+        if gx < 2 or gx >= GRID_SIZE - 2:
             return "kill"
 
-        if gy < 2 or gy >= GRID_SIZE-2:
+        if gy < 2 or gy >= GRID_SIZE - 2:
             return "kill"
 
-        r = math.sqrt(x*x + y*y)
+        r = math.sqrt(x * x + y * y)
 
         if r > Rkill:
             return "kill"
 
-        for dx in (-1,0,1):
-            for dy in (-1,0,1):
+        for dx in (-1, 0, 1):
+            for dy in (-1, 0, 1):
 
                 if dx == 0 and dy == 0:
                     continue
 
-                if grid[gx+dx, gy+dy]:
+                if grid[gx + dx, gy + dy]:
                     return "stick"
 
         return "walk"
 
     def aggregate(x, y):
 
-        nonlocal Rmax, Rs, Rkill      # <-- changed from global
+        nonlocal Rmax, Rs, Rkill
 
         gx = x + CENTER
         gy = y + CENTER
 
         grid[gx, gy] = 1
 
-        r = math.sqrt(x*x + y*y)
+        r = math.sqrt(x * x + y * y)
 
         if r > Rmax:
 
@@ -88,22 +89,21 @@ def generate_dla(NUM_PARTICLES=3600):
 
     def long_jump(x, y):
 
-        r = math.sqrt(x*x + y*y)
+        r = math.sqrt(x * x + y * y)
 
         if r > Rs:
 
-            theta = random.uniform(0, 2*math.pi)
+            theta = random.uniform(0, 2 * math.pi)
 
             x += int((r - Rs) * math.cos(theta))
             y += int((r - Rs) * math.sin(theta))
 
         return x, y
 
-
-    for particle in range(NUM_PARTICLES):
+    for particle in range(num_particles):
 
         if particle % 1000 == 0:
-            print(f"{particle}/{NUM_PARTICLES}")
+            print(f"{particle}/{num_particles}")
 
         x, y = occupy()
 
@@ -122,12 +122,12 @@ def generate_dla(NUM_PARTICLES=3600):
 
             else:
 
-                r = math.sqrt(x*x + y*y)
+                r = math.sqrt(x * x + y * y)
 
                 if r > Rs + 10:
                     x, y = long_jump(x, y)
 
-    plt.figure(figsize=(10,10), dpi=250)
+    plt.figure(figsize=(10, 10), dpi=250)
 
     plt.imshow(
         grid,
@@ -137,7 +137,7 @@ def generate_dla(NUM_PARTICLES=3600):
     )
 
     plt.title(
-        f"Diffusion Limited Aggregation ({NUM_PARTICLES} particles)",
+        f"Diffusion Limited Aggregation ({num_particles} particles)",
         fontsize=14
     )
 
