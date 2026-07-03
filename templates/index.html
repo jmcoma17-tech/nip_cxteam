@@ -1,52 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DLA Physics App</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DLA Physics App</title>
 
-    <style>
-        body{
-            font-family:Arial,sans-serif;
-            text-align:center;
-            background:#f4f4f4;
-            margin:40px;
-        }
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-        button{
-            padding:12px 25px;
-            font-size:18px;
-            cursor:pointer;
-            margin:20px;
-        }
+body{
+    font-family:"Segoe UI", Arial, sans-serif;
+    background:linear-gradient(135deg,#eef2ff,#f8fafc);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:30px;
+}
 
-        img{
-            width:700px;
-            max-width:95%;
-            border:1px solid #ccc;
-            background:white;
-        }
-    </style>
+.container{
+    width:100%;
+    max-width:900px;
+    background:#fff;
+    border-radius:20px;
+    padding:40px;
+    text-align:center;
+    box-shadow:0 15px 40px rgba(0,0,0,.12);
+}
+
+h1{
+    font-size:2.3rem;
+    color:#1f2937;
+    margin-bottom:10px;
+}
+
+p{
+    color:#6b7280;
+    margin-bottom:30px;
+    font-size:1rem;
+}
+
+button{
+    background:#2563eb;
+    color:white;
+    border:none;
+    border-radius:10px;
+    padding:14px 34px;
+    font-size:17px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+    box-shadow:0 8px 20px rgba(37,99,235,.25);
+}
+
+button:hover{
+    background:#1d4ed8;
+    transform:translateY(-3px);
+    box-shadow:0 12px 25px rgba(37,99,235,.35);
+}
+
+button:active{
+    transform:translateY(0);
+}
+
+.image-container{
+    margin-top:35px;
+    padding:15px;
+    background:#f8fafc;
+    border-radius:15px;
+    border:1px solid #e5e7eb;
+}
+
+img{
+    width:100%;
+    max-width:700px;
+    border-radius:10px;
+    display:block;
+    margin:auto;
+}
+
+@media(max-width:768px){
+
+    .container{
+        padding:25px;
+    }
+
+    h1{
+        font-size:1.8rem;
+    }
+
+    button{
+        width:100%;
+    }
+
+}
+</style>
+
 </head>
 
 <body>
 
-<h1>Diffusion Limited Aggregation</h1>
+<div class="container">
 
-<button onclick="generate()">Generate DLA</button>
+    <h1>Diffusion-Limited Aggregation</h1>
 
-<br>
+    <p>Generate a Diffusion-Limited Aggregation (DLA) fractal simulation using 3,600 particles.</p>
 
-<img id="image" src="" alt="Generated image will appear here">
+    <button onclick="generate()">Generate DLA</button>
+
+    <div class="image-container">
+        <img id="image" src="" alt="Generated image will appear here">
+    </div>
+
+</div>
 
 <script>
-async function generate(){
+
+function generate(){
 
     const image = document.getElementById("image");
 
-    image.src = "/generate?t=" + Date.now();
+    image.src="/generate?t="+Date.now();
 
 }
+
 </script>
 
 </body>
