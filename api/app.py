@@ -1,6 +1,5 @@
 from flask import Flask, render_template, send_file
 from pathlib import Path
-
 from dla import generate_dla
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -17,5 +16,7 @@ def home():
 @app.route("/generate")
 def generate():
     image = generate_dla(100)
-    image.seek(0)
-    return send_file(image, mimetype="image/png")
+    return send_file(
+        image,
+        mimetype="image/png"
+    )
