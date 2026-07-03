@@ -10,7 +10,7 @@ from io import BytesIO
 GRID_SIZE = 601
 CENTER = GRID_SIZE // 2
 
-def generate_dla(NUM_PARTICLES=3600):
+def generate_dla(NUM_PARTICLES=36000):
 
     grid = np.zeros((GRID_SIZE, GRID_SIZE), dtype=np.uint8)
 
